@@ -29,7 +29,6 @@
 
 <script lang="ts">
 import Vue, { PropType } from "vue";
-import debounce from "lodash/debounce";
 import { searchQueryOption } from "./Search";
 
 const OPTIONS = new Set(["match-case", "match-word", "use-regex"]);
@@ -83,13 +82,13 @@ export default Vue.extend({
     },
   },
   methods: {
-    debouncedSearch: debounce(function (this: any, searchQuery: string): void {
+    debouncedSearch(searchQuery: string): void {
       this.search(searchQuery);
       if (searchQuery) {
         this.history.push(searchQuery);
         this.historyIndex = this.history.length - 1;
       }
-    }, 300),
+    },
 
     onKeydown(e: KeyboardEvent) {
       const isPressingUp = e.key === "ArrowUp";
