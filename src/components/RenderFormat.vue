@@ -11,12 +11,9 @@
     />
     <a
       href="#"
-      @click.prevent="$emit('select-format', 'json')"
-      :class="[
-        'ds-render-format__link',
-        activeFormat === 'json' && 'is-active',
-      ]"
-      v-text="'JSON'"
+      @click.prevent="$emit('select-format', 'raw')"
+      :class="['ds-render-format__link', activeFormat === 'raw' && 'is-active']"
+      v-text="'Raw'"
     />
   </div>
 </template>
@@ -24,7 +21,7 @@
 <script lang="ts">
 import Vue from "vue";
 
-const FORMATS = new Set(["table", "json"]);
+const FORMATS = new Set(["table", "raw"]);
 
 export default Vue.extend({
   name: "DataScreenerRenderFormat",
