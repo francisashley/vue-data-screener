@@ -1,6 +1,8 @@
-# Vue Data Screener
-
-Easily search and filter javascript arrays
+<div style="text-align:center;">
+  <img src=".storybook/logo-light.png" alt="Logo" style="max-width: 400px;">
+  <br/>
+  <em>Easily search and filter javascript arrays</em>
+</div>
 
 ## Features
 
