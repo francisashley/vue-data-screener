@@ -3,6 +3,7 @@ const path = require("path");
 module.exports = {
   stories: [
     "../storybook/usage/Default.stories.js",
+    "../storybook/usage/WithRawToggle.stories.js",
     "../storybook/usage/WithoutHeaders.stories.js",
     "../storybook/usage/PickFields.stories.js",
     "../storybook/data/ArrayOfObjects.stories.js",

@@ -9,6 +9,7 @@
       <Header v-if="withHeader">
         <div class="ds__title">Results</div>
         <RenderFormat
+          v-if="withRawToggle"
           class="ds__render-format"
           :active-format="renderFormat"
           @select-format="(format) => (renderFormat = format)"
@@ -85,6 +86,10 @@ export default Vue.extend({
     withHeader: {
       type: Boolean,
       default: true,
+    },
+    withRawToggle: {
+      type: Boolean,
+      default: false,
     },
   },
 
@@ -189,6 +194,7 @@ export default Vue.extend({
 
 .ds__title {
   font-weight: 500;
+  margin-right: auto;
 }
 
 .ds__render-format {
