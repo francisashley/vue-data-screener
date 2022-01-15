@@ -19,13 +19,13 @@
   ],
   "scripts": {
     "serve": "vue-cli-service serve dev/serve.ts",
-    "storybook": "start-storybook -p 6006",
+    "storybook": "start-storybook --docs -p 6006",
     "prebuild": "rimraf ./dist",
     "build": "cross-env NODE_ENV=production rollup --config build/rollup.config.js",
     "build:ssr": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format cjs",
     "build:es": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format es",
     "build:unpkg": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format iife",
-    "build:storybook": "build-storybook",
+    "build:storybook": "build-storybook --docs",
     "postbuild": "rimraf ./dist/types/dev ./dist/types/src/entry.d.ts",
     "test": "exit 0"
   },
@@ -39,6 +39,7 @@
     "@rollup/plugin-node-resolve": "^9.0.0",
     "@rollup/plugin-replace": "^2.4.2",
     "@storybook/addon-actions": "^6.4.12",
+    "@storybook/addon-docs": "^6.4.12",
     "@storybook/addon-essentials": "^6.4.12",
     "@storybook/addon-links": "^6.4.12",
     "@storybook/addons": "^6.4.12",
