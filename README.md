@@ -1,7 +1,9 @@
-<div style="text-align:center;">
+<div align="center">
   <img src=".storybook/logo-light.png" alt="Logo" style="max-width: 400px;">
   <br/>
   <em>Easily search and filter javascript arrays</em>
+  <br/>
+  <a href="https://skystash.github.io/vue-data-screener/">Documentation</a>
 </div>
 
 ## Features
