@@ -6,7 +6,7 @@
       array of objects or an array of arrays."
     />
     <template v-else>
-      <Header>
+      <Header v-if="withHeader">
         <div class="ds__title">Results</div>
         <RenderFormat
           class="ds__render-format"
@@ -81,6 +81,10 @@ export default Vue.extend({
     currentPage: {
       type: Number as PropType<number>,
       default: 1,
+    },
+    withHeader: {
+      type: Boolean,
+      default: true,
     },
   },
 
