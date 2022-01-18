@@ -85,6 +85,7 @@
     "node": ">=12"
   },
   "dependencies": {
-    "@types/jest": "^27.4.0"
+    "@types/jest": "^27.4.0",
+    "lodash": "^4.17.21"
   }
 }
