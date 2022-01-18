@@ -2,13 +2,19 @@
   <table class="ds-table">
     <thead>
       <tr>
-        <td v-for="(field, index) in fields" :key="index">
+        <table-head-field
+          v-for="(field, index) in fields"
+          :key="index"
+          :field="field"
+          :sort-direction="getSortDirection(field)"
+          @sort="onSort(field)"
+        >
           {{ field }}
-        </td>
+        </table-head-field>
       </tr>
     </thead>
     <tbody>
-      <tr v-for="(row, j) in rows" :key="j">
+      <tr v-for="(row, j) in getSortedRows" :key="j">
         <template v-if="row">
           <td
             v-for="(field, k) in row"
@@ -26,7 +32,10 @@
 
 <script lang="ts">
 import Vue, { PropType } from "vue";
+import orderBy from "lodash/orderBy";
 import highlightText from "../utils/highlightText";
+import TableHeadField from "./TableHeadField.vue";
+import { normalisedRow } from "../utils/dataTools";
 
 export default Vue.extend({
   name: "DataScreenerTable",
@@ -37,7 +46,7 @@ export default Vue.extend({
       default: () => [],
     },
     rows: {
-      type: Array,
+      type: Array as PropType<normalisedRow[]>,
       default: () => [],
     },
     highlight: {
@@ -46,12 +55,52 @@ export default Vue.extend({
     },
   },
 
+  data() {
+    return {
+      sortField: null as null | string,
+      sortDirection: "desc" as "asc" | "desc",
+    };
+  },
+
+  components: {
+    TableHeadField,
+  },
+
+  computed: {
+    getSortedRows(): normalisedRow[] {
+      const rows = this.rows;
+
+      const sortIndex =
+        rows[0]?.findIndex((column) => column.key === this.sortField) ?? null;
+
+      if (this.sortField && this.sortDirection) {
+        return orderBy(rows, [`${sortIndex}.value`], [this.sortDirection]);
+      } else {
+        return rows;
+      }
+    },
+  },
+
   methods: {
-    getHighlighted(value: any, highlight: string) {
+    getHighlighted(value: unknown, highlight: string) {
       if (["string", "number"].includes(typeof value)) {
         return highlightText(String(value), highlight);
       }
       return value;
+    },
+
+    getSortDirection(field: string): "asc" | "desc" | null {
+      if (this.sortField === field) {
+        return this.sortDirection;
+      }
+      return null;
+    },
+
+    onSort(sortField: string) {
+      if (this.sortField === sortField) {
+        this.sortDirection = this.sortDirection === "desc" ? "asc" : "desc";
+      }
+      this.sortField = sortField;
     },
   },
 });
