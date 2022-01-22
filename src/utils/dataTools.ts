@@ -5,16 +5,16 @@ import getTypeOf from "./getTypeOf";
 import isValidRegExp from "./isValidRegExp";
 
 export function isValidInput(data: unknown): boolean {
-  const isObject = (val: any) => typeof val === "object" && val !== null;
+  const isObject = (val: unknown) => typeof val === "object" && val !== null;
   return (
     Array.isArray(data) &&
-    data.every((row: any) => Array.isArray(row) || isObject(row))
+    data.every((row: unknown) => Array.isArray(row) || isObject(row))
   );
 }
 
 export interface normalisedField {
   key: string;
-  value: any;
+  value: unknown;
   hasValue: boolean;
   type:
     | "string"
@@ -35,7 +35,7 @@ export function normaliseInput(data: any[]): normalisedRow[] {
   data = data.map((row) => ({ ...row }));
 
   // Normalise each field
-  const normaliseField = (field: string, value: any): normalisedField => ({
+  const normaliseField = (field: string, value: unknown): normalisedField => ({
     key: field,
     value,
     type: getTypeOf(value),
@@ -84,7 +84,7 @@ export function pickFields(
   return rows.map((row) => {
     return pickFields
       .map((pickField) => row.find((field) => field.key === pickField) || false)
-      .filter((Boolean as any) as ExcludesFalse);
+      .filter((Boolean as unknown) as ExcludesFalse);
   });
 }
 
