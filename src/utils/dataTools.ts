@@ -1,5 +1,3 @@
-import assign from "lodash/assign";
-import fill from "lodash/fill";
 import escapeRegExp from "lodash/escapeRegExp";
 import getTypeOf from "./getTypeOf";
 import isValidRegExp from "./isValidRegExp";
@@ -104,7 +102,8 @@ export function getPaginated(options: {
 
   // provide placeholders when page does not meet perPage threshold
   if (withPlaceholders && rows.length !== perPage) {
-    return assign(fill(new Array(perPage), null), rows);
+    const emptyRows = Array(perPage).fill(null);
+    return Object.assign(emptyRows, rows);
   }
 
   return rows;
