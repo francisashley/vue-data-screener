@@ -18,6 +18,7 @@
   "scripts": {
     "serve": "vue-cli-service serve dev/serve.ts",
     "build": "vue-cli-service build --target lib --name index --entry src/index.ts",
+    "build:analyze": "cross-env ANALYZE=true vue-cli-service build --target lib --name index --entry src/index.ts",
     "storybook": "start-storybook --docs -p 6006",
     "prebuild": "rimraf ./dist",
     "build-storybook": "build-storybook --docs",
