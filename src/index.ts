@@ -1,1 +1,3 @@
-export { default as DataScreener } from "./DataScreener.vue";
+import DataScreener from "./DataScreener.vue";
+
+export default DataScreener;

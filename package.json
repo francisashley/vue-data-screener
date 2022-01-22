@@ -1,11 +1,9 @@
 {
   "name": "@skystash/vue-data-screener",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "",
-  "main": "dist/vue-data-screener.ssr.js",
-  "browser": "dist/vue-data-screener.esm.js",
-  "module": "dist/vue-data-screener.esm.js",
-  "unpkg": "dist/vue-data-screener.min.js",
+  "main": "dist/index.common.js",
+  "unpkg": "dist/index.umd.min.js",
   "types": "dist/types/src/entry.esm.d.ts",
   "publishConfig": {
     "@skystash:registry": "https://npm.pkg.github.com"
@@ -19,10 +17,10 @@
   ],
   "scripts": {
     "serve": "vue-cli-service serve dev/serve.ts",
+    "build": "vue-cli-service build --target lib --name index --entry src/index.ts",
     "storybook": "start-storybook --docs -p 6006",
     "prebuild": "rimraf ./dist",
-    "build": "vue-cli-service build --target lib src/index.ts",
-    "build:storybook": "build-storybook --docs",
+    "build-storybook": "build-storybook --docs",
     "postbuild": "rimraf ./dist/types/dev ./dist/types/src/entry.d.ts",
     "test": "exit 0"
   },
