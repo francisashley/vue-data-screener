@@ -1,17 +1,17 @@
 <script lang="ts">
 import Vue from "vue";
-import DemoButton from "@/DemoButton.vue";
+import DataScreener from "@/DataScreener.vue";
 
 export default Vue.extend({
   name: "ServeDev",
   components: {
-    DemoButton,
+    DataScreener,
   },
 });
 </script>
 
 <template>
   <div id="app">
-    <demo-button />
+    <data-screener />
   </div>
 </template>
