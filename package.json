@@ -1,6 +1,6 @@
 {
   "name": "@skystash/vue-data-screener",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "",
   "main": "dist/index.common.js",
   "unpkg": "dist/index.umd.min.js",
