@@ -32,7 +32,7 @@
 
 <script lang="ts">
 import Vue, { PropType } from "vue";
-import orderBy from "lodash/orderBy";
+import { orderBy } from "natural-orderby";
 import highlightText from "../utils/highlightText";
 import TableHeadField from "./TableHeadField.vue";
 import { normalisedRow } from "../utils/dataTools";
@@ -74,7 +74,11 @@ export default Vue.extend({
         rows[0]?.findIndex((column) => column.key === this.sortField) ?? null;
 
       if (this.sortField && this.sortDirection) {
-        return orderBy(rows, [`${sortIndex}.value`], [this.sortDirection]);
+        return orderBy(
+          rows,
+          [(row: normalisedRow | null) => row?.[sortIndex]?.value],
+          [this.sortDirection]
+        );
       } else {
         return rows;
       }
