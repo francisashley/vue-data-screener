@@ -16,6 +16,7 @@
     "baseUrl": ".",
     "newLine": "lf",
     "types": ["node", "vue", "@types/jest"],
+    "typeRoots": ["@types", "./types"],
     "paths": {
       "@/*": ["src/*"]
     },
