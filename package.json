@@ -18,7 +18,7 @@
   "scripts": {
     "serve": "vue-cli-service serve dev/serve.ts",
     "build": "vue-cli-service build --target lib --name index --entry src/index.ts",
-    "build:analyze": "cross-env ANALYZE=true vue-cli-service build --target lib --name index --entry src/index.ts",
+    "build-report": "vue-cli-service build --report --target lib --name index --entry src/index.ts",
     "storybook": "start-storybook --docs -p 6006",
     "prebuild": "rimraf ./dist",
     "build-storybook": "build-storybook --docs",
@@ -48,7 +48,6 @@
     "@vue/eslint-config-prettier": "6.0.0",
     "@vue/eslint-config-typescript": "^10.0.0",
     "babel-loader": "^8.2.3",
-    "cross-env": "^7.0.3",
     "eslint": "6.7.2",
     "eslint-plugin-prettier": "3.3.1",
     "eslint-plugin-prettier-vue": "^3.1.0",
@@ -65,8 +64,7 @@
     "typescript": "^4.0.3",
     "vue": "^2.6.14",
     "vue-loader": "^15.9.8",
-    "vue-template-compiler": "^2.6.14",
-    "webpack-bundle-analyzer": "^4.5.0"
+    "vue-template-compiler": "^2.6.14"
   },
   "peerDependencies": {
     "vue": "^2.6.14"

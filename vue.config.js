@@ -3,9 +3,6 @@ const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
 
 module.exports = {
   configureWebpack: {
-    plugins: [
-      process.env.ANALYZE === "true" && new BundleAnalyzerPlugin(),
-    ].filter(Boolean),
   },
   chainWebpack: (config) => {
     // These are some necessary steps changing the default webpack config of the Vue CLI
