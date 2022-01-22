@@ -28,9 +28,13 @@ export interface normalisedField {
 
 export type normalisedRow = normalisedField[];
 
-export function normaliseInput(data: any[]): normalisedRow[] {
+export interface UnknownObject {
+  [key: string | number]: unknown;
+}
+
+export function normaliseInput(data: UnknownObject[]): normalisedRow[] {
   // in the case that an array (data) of arrays (rows) has been provided [[],[],[]], convert to [{},{},{}]
-  data = data.map((row) => ({ ...row }));
+  data = data.map((row) => (Array.isArray(row) ? { ...row } : row));
 
   // Normalise each field
   const normaliseField = (field: string, value: unknown): normalisedField => ({
@@ -39,8 +43,9 @@ export function normaliseInput(data: any[]): normalisedRow[] {
     type: getTypeOf(value),
     hasValue: value !== null || value !== undefined,
   });
-  data = data.map(
-    (row): normalisedRow => {
+
+  let normalisedData = data.map(
+    (row: UnknownObject): normalisedRow => {
       return Object.keys(row).map(
         (key): normalisedField => normaliseField(key, row[key])
       );
@@ -48,8 +53,8 @@ export function normaliseInput(data: any[]): normalisedRow[] {
   );
 
   // In the case that an array of objects has been passed in with different fields, ensure that all rows include all fields and in the same order.
-  const fields = getFields(data);
-  data = data.map((row) => {
+  const fields = getFields(normalisedData);
+  normalisedData = normalisedData.map((row) => {
     return fields.map((field) => {
       return (
         row.find((_field: normalisedField) => _field.key === field) ||
@@ -58,7 +63,7 @@ export function normaliseInput(data: any[]): normalisedRow[] {
     });
   });
 
-  return data;
+  return normalisedData;
 }
 
 export function getFields(rows: normalisedRow[]): string[] {

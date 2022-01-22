@@ -57,14 +57,14 @@ import Search from "./components/Search.vue";
 import { searchQueryOption } from "./components/Search";
 import ErrorMessage from "./components/ErrorMessage.vue";
 import isValidRegExp from "./utils/isValidRegExp";
-import dataTools, { normalisedRow } from "./utils/dataTools";
+import dataTools, { normalisedRow, UnknownObject } from "./utils/dataTools";
 
 export default Vue.extend({
   name: "DataScreener",
 
   props: {
     data: {
-      type: Array as PropType<any[]>,
+      type: Array as PropType<unknown[]>,
       default: () => [],
       validator: dataTools.isValidInput,
     },
@@ -126,7 +126,7 @@ export default Vue.extend({
 
     getNormalisedData(): normalisedRow[] {
       const data = dataTools.isValidInput(this.data)
-        ? dataTools.normaliseInput(this.data as any[])
+        ? dataTools.normaliseInput(this.data as UnknownObject[])
         : [];
 
       if (this.pickFields.length > 0) {
@@ -162,7 +162,7 @@ export default Vue.extend({
       });
     },
 
-    getPaginatedData(): any[] {
+    getPaginatedData(): unknown[] {
       return dataTools.getPaginated({
         rows: this.searchQuery ? this.getSearchedData : this.getNormalisedData,
         page: this.stagedCurrentPage - 1,
