@@ -15,7 +15,7 @@
 
 <script lang="ts">
 import Vue, { PropType } from "vue";
-import Icon from "./Icon/Icon.vue";
+import Icon from "./Icon.vue";
 
 type sortDirection = null | "asc" | "desc";
 
