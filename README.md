@@ -87,6 +87,15 @@ https://medium.com/evodeck/responsive-data-tables-with-css-grid-3c58ecf04723
 Publish update:
 
 ```
+> npm version patch
+or 
+> npm version minor
+or 
+> npm version major
+or 
 > npm version x.x.x
+
+then
+
 > npm publish
 ```
