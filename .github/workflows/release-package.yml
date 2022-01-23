@@ -16,40 +16,19 @@ jobs:
           node-version: 12
       - run: yarn
       - run: yarn test
+      - run: yarn build
 
-  package:
+  publish-github-packages:
     needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Use Node.js 12
-        uses: actions/setup-node@v1
+      - uses: actions/setup-node@v1
         with:
           node-version: 12
-
-      - run: yarn
-      - run: yarn build
-      - run: yarn version --patch --no-git-tag-version
-      - run: yarn pack
-      - name: Upload
-        uses: actions/upload-artifact@v2
-        with:
-            name: package
-            path: "*.tgz"
-
-  publish:
-    name: "Publish to GitHub Packages"
-    needs: package
-    runs-on: ubuntu-latest
-    steps:
-    - name: Upload
-      uses: actions/download-artifact@v2
-      with:
-          name: package
-    - uses: actions/setup-node@v2
-      with:
-        node-version: 12
-        registry-url: https://npm.pkg.github.com/
-    - run: npm publish $(ls *.tgz)
-      env:
-        NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          registry-url: https://npm.pkg.github.com/
+      - name: Update package version
+        run: yarn version --patch --no-git-tag-version
+      - run: yarn publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
