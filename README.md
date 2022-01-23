@@ -76,3 +76,5 @@ export default Vue.extend({
 ```
 
 More documentation can be found on the [Chromatic](https://www.chromatic.com/builds?appId=61d4d292187f54004aba929a)
+
+https://www.aaron-powell.com/posts/2020-11-06-deploy-to-github-packages-with-github-actions/
