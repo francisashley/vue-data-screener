@@ -16,7 +16,7 @@ jobs:
           node-version: 12
       - run: yarn
       - run: yarn test
-  
+
   package:
     needs: build
     runs-on: ubuntu-latest
@@ -26,7 +26,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 12
-      
+
       - run: yarn
       - run: yarn build
       - run: yarn version --patch --no-git-tag-version
@@ -41,15 +41,15 @@ jobs:
     name: "Publish to GitHub Packages"
     needs: package
     runs-on: ubuntu-latest
-    permissions:
-      packages: write
-      contents: read
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: 12
-          registry-url: https://npm.pkg.github.com/
+    - name: Upload
+      uses: actions/download-artifact@v2
+      with:
+          name: package
+    - uses: actions/setup-node@v2
+      with:
+        node-version: 12
+        registry-url: https://npm.pkg.github.com/
       - run: yarn
       - run: yarn build
       - run: yarn publish
