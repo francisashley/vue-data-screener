@@ -50,8 +50,6 @@ jobs:
       with:
         node-version: 12
         registry-url: https://npm.pkg.github.com/
-    - run: yarn
-    - run: yarn build
-    - run: yarn publish
+    - run: npm publish $(ls *.tgz)
       env:
         NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
