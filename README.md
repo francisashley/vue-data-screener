@@ -80,3 +80,13 @@ More documentation can be found on the [Chromatic](https://www.chromatic.com/bui
 https://www.aaron-powell.com/posts/2020-11-06-deploy-to-github-packages-with-github-actions/
 
 https://medium.com/evodeck/responsive-data-tables-with-css-grid-3c58ecf04723
+
+
+# Dev note
+
+Publish update:
+
+```
+> npm version x.x.x
+> npm publish
+```
