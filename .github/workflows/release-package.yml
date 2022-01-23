@@ -1,8 +1,10 @@
-name: Release Package
+name: Publish Package
 
 on:
-  release:
-    types: [created]
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   build:
@@ -14,9 +16,30 @@ jobs:
           node-version: 12
       - run: yarn
       - run: yarn test
-
-  publish-gpr:
+  
+  package:
     needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js 12
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      
+      - run: yarn
+      - run: yarn build
+      - run: yarn version --patch --no-git-tag-version
+      - run: yarn pack
+      - name: Upload
+        uses: actions/upload-artifact@v2
+        with:
+            name: package
+            path: "*.tgz"
+
+  publish:
+    name: "Publish to GitHub Packages"
+    needs: package
     runs-on: ubuntu-latest
     permissions:
       packages: write
