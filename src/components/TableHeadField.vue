@@ -6,16 +6,18 @@
   >
     <slot />
     <div v-if="isSortable" class="ds-table-head-field__sortable-icon">
-      <icon v-if="sortDirection === null" name="sort" />
-      <icon v-else-if="sortDirection === 'asc'" name="sort-up" />
-      <icon v-else-if="sortDirection === 'desc'" name="sort-down" />
+      <sort-icon v-if="sortDirection === null" />
+      <sort-up-icon v-else-if="sortDirection === 'asc'" />
+      <sort-down-icon v-else-if="sortDirection === 'desc'" />
     </div>
   </td>
 </template>
 
 <script lang="ts">
 import Vue, { PropType } from "vue";
-import Icon from "./Icon.vue";
+import SortIcon from "./icons/Sort.vue";
+import SortUpIcon from "./icons/SortUp.vue";
+import SortDownIcon from "./icons/SortDown.vue";
 
 type sortDirection = null | "asc" | "desc";
 
@@ -28,7 +30,9 @@ export default Vue.extend({
   },
 
   components: {
-    Icon,
+    SortIcon,
+    SortUpIcon,
+    SortDownIcon,
   },
 });
 </script>
