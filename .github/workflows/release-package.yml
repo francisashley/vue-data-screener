@@ -46,12 +46,12 @@ jobs:
       uses: actions/download-artifact@v2
       with:
           name: package
-      uses: actions/setup-node@v1
+    - uses: actions/setup-node@v2
       with:
         node-version: 12
         registry-url: https://npm.pkg.github.com/
-      - run: yarn
-      - run: yarn build
-      - run: yarn publish
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+    - run: yarn
+    - run: yarn build
+    - run: yarn publish
+      env:
+        NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
