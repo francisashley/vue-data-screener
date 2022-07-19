@@ -2,8 +2,7 @@ const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
   .BundleAnalyzerPlugin;
 
 module.exports = {
-  configureWebpack: {
-  },
+  configureWebpack: {},
   chainWebpack: (config) => {
     // These are some necessary steps changing the default webpack config of the Vue CLI
     // that need to be changed in order for Typescript based components to generate their
