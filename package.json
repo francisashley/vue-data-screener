@@ -12,9 +12,9 @@
     "*.vue"
   ],
   "scripts": {
-    "serve": "vue-cli-service serve dev/serve.ts",
-    "build": "vue-cli-service build --target lib --name index --entry src/index.ts",
-    "build-report": "vue-cli-service build --report --target lib --name index --entry src/index.ts",
+    "dev": "vite --mode dev",
+    "build": "vite build --mode prod",
+    "build:report": "vite build --mode report",
     "storybook": "start-storybook --docs -p 6006",
     "prebuild": "rimraf ./dist",
     "build-storybook": "build-storybook --docs",
@@ -36,6 +36,7 @@
     "@types/lodash": "^4.14.178",
     "@typescript-eslint/eslint-plugin": "4.18",
     "@typescript-eslint/parser": "4.18",
+    "@vitejs/plugin-vue": "^3.0.1",
     "@vue/cli": "^4.5.15",
     "@vue/cli-plugin-babel": "^4.5.13",
     "@vue/cli-plugin-eslint": "~4.5.0",
@@ -54,10 +55,13 @@
     "natural-orderby": "^2.0.3",
     "prettier": "2.2.1",
     "rimraf": "^3.0.2",
+    "rollup-plugin-visualizer": "^5.7.1",
     "sass": "^1.47.0",
     "sass-loader": "10",
     "ttypescript": "^1.5.12",
     "typescript": "4.7.4",
+    "vite": "^3.0.2",
+    "vite-plugin-vue2": "^2.0.2",
     "vue": "^2.6.14",
     "vue-loader": "^15.9.8",
     "vue-template-compiler": "^2.6.14"
@@ -67,5 +71,6 @@
   },
   "engines": {
     "node": ">=12"
-  }
+  },
+  "dependencies": {}
 }
