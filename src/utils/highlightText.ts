@@ -1,4 +1,4 @@
-import escapeRegExp from "lodash/escapeRegExp";
+import escapeRegExp from "./escapeRegExp";
 
 export default function highlightText(
   value: string,

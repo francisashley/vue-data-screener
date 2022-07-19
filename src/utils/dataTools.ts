@@ -1,4 +1,4 @@
-import escapeRegExp from "lodash/escapeRegExp";
+import escapeRegExp from "./escapeRegExp";
 import getTypeOf from "./getTypeOf";
 import isValidRegExp from "./isValidRegExp";
 
