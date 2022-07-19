@@ -1,11 +1,12 @@
 import { defineConfig } from "vite";
 import { createVuePlugin as vue } from "vite-plugin-vue2";
 import { visualizer } from "rollup-plugin-visualizer";
+import typescript from "@rollup/plugin-typescript";
 import path from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
-  const plugins = [vue()];
+  const plugins = [vue(), typescript()];
 
   if (mode === "report") {
     plugins.push(
