@@ -15,7 +15,7 @@
     "sourceMap": true,
     "baseUrl": ".",
     "newLine": "lf",
-    "types": ["node", "vue", "@types/jest"],
+    "types": ["node", "vue"],
     "typeRoots": ["@types", "./types"],
     "paths": {
       "@/*": ["src/*"]
