@@ -20,7 +20,9 @@
     "paths": {
       "@/*": ["src/*"]
     },
-    "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
+    "lib": ["esnext", "dom", "dom.iterable", "scripthost"],
+    "jsx": "react",
+    "jsxFactory": "h"
   },
   "exclude": ["node_modules", "dist"]
 }
