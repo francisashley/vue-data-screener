@@ -26,6 +26,7 @@
     "@babel/core": "^7.14.6",
     "@babel/preset-env": "^7.14.7",
     "@babel/preset-typescript": "^7.14.5",
+    "@rollup/plugin-typescript": "^8.3.3",
     "@storybook/addon-actions": "6.5.9",
     "@storybook/addon-docs": "6.5.9",
     "@storybook/addon-essentials": "6.5.9",
@@ -72,8 +73,5 @@
   },
   "engines": {
     "node": ">=12"
-  },
-  "dependencies": {
-    "@rollup/plugin-typescript": "^8.3.3"
   }
 }
