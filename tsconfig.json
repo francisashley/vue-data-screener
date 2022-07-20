@@ -21,8 +21,7 @@
       "@/*": ["src/*"]
     },
     "lib": ["esnext", "dom", "dom.iterable", "scripthost"],
-    "jsx": "react",
-    "jsxFactory": "h"
+    "jsx": "preserve"
   },
   "exclude": ["node_modules", "dist"]
 }
