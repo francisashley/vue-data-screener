@@ -1,4 +1,4 @@
-import DataScreener from "../../src/DataScreener.vue";
+import DataScreener from "../../src/components/DataScreener.vue";
 
 // More on default export: https://storybook.js.org/docs/vue/writing-stories/introduction#default-export
 export default {

@@ -1,6 +1,6 @@
 <script lang="ts">
 import Vue from "vue";
-import DataScreener from "@/DataScreener.vue";
+import DataScreener from "@/components/DataScreener.vue";
 
 export default Vue.extend({
   name: "ServeDev",

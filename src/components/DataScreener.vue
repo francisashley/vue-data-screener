@@ -46,18 +46,18 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
-import PrettyJson from "./components/PrettyJson.vue";
-import Pagination from "./components/Pagination.vue";
-import Table from "./components/Table.vue";
-import Header from "./components/layout/Header.vue";
-import Content from "./components/layout/Content.vue";
-import Footer from "./components/layout/Footer.vue";
-import RenderFormat from "./components/RenderFormat.vue";
-import Search from "./components/Search.vue";
-import { searchQueryOption } from "./components/Search";
-import ErrorMessage from "./components/ErrorMessage.vue";
-import isValidRegExp from "./utils/isValidRegExp";
-import dataTools, { normalisedRow, UnknownObject } from "./utils/dataTools";
+import PrettyJson from "./PrettyJson.vue";
+import Pagination from "./Pagination.vue";
+import Table from "./Table.vue";
+import Header from "./layout/Header.vue";
+import Content from "./layout/Content.vue";
+import Footer from "./layout/Footer.vue";
+import RenderFormat from "./RenderFormat.vue";
+import Search from "./Search.vue";
+import { searchQueryOption } from "./Search";
+import ErrorMessage from "./ErrorMessage.vue";
+import isValidRegExp from "../utils/isValidRegExp";
+import dataTools, { normalisedRow, UnknownObject } from "../utils/dataTools";
 
 export default defineComponent({
   name: "DataScreener",
