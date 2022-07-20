@@ -12,7 +12,7 @@
           v-if="withRawToggle"
           class="ds__render-format"
           :active-format="renderFormat"
-          @select-format="(format) => (renderFormat = format)"
+          @select-format="onSelectFormat"
         />
         <Search
           class="ds__search"
@@ -37,7 +37,7 @@
           :total-items="getSearchedData.length"
           :per-page="perPage"
           :current-page="stagedCurrentPage"
-          @change-page="(page) => (stagedCurrentPage = page)"
+          @change-page="onChangePage"
         />
       </Footer>
     </template>
@@ -71,7 +71,7 @@ export default defineComponent({
     pickFields: {
       type: Array as PropType<string[]>,
       default: () => [],
-      validator: (pickFields) => {
+      validator: (pickFields: string[]) => {
         return pickFields.every((field) => typeof field === "string");
       },
     },
@@ -181,6 +181,14 @@ export default defineComponent({
       this.searchQueryOptions = options;
       this.onSearch(this.searchQuery);
     },
+
+    onSelectFormat(format: 'table' | 'json') {
+      this.renderFormat = format;
+    },
+
+    onChangePage(page: number) {
+      this.stagedCurrentPage = page;
+    }
   },
 });
 </script>

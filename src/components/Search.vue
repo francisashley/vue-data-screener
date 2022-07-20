@@ -2,7 +2,7 @@
   <div class="ds-search">
     <input
       :value="query"
-      @input="debouncedSearch($event.target.value)"
+      @input="debouncedSearch"
       @keydown="onKeydown"
       type="text"
       class="ds-search__search"
@@ -54,7 +54,7 @@ export default defineComponent({
     activeOptions: {
       type: Array as PropType<Array<searchQueryOption>>,
       default: () => [],
-      validator: (options) => options.every((option) => OPTIONS.has(option)),
+      validator: (options: string[]) => options.every((option) => OPTIONS.has(option)),
     },
   },
   data() {
@@ -82,7 +82,8 @@ export default defineComponent({
     },
   },
   methods: {
-    debouncedSearch(searchQuery: string): void {
+    debouncedSearch(event: Event): void {
+      const searchQuery = (<HTMLInputElement>event.target).value;
       this.search(searchQuery);
       if (searchQuery) {
         this.history.push(searchQuery);
