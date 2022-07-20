@@ -6,7 +6,7 @@
       array of objects or an array of arrays."
     />
     <template v-else>
-      <Header>
+      <AppHeader>
         <div class="ds__title">Results</div>
         <RenderFormat
           class="ds__render-format"
@@ -21,8 +21,8 @@
           @search="onSearch"
           @update-options="onUpdateOptions"
         />
-      </Header>
-      <Content>
+      </AppHeader>
+      <AppMain>
         <Table
           v-if="renderFormat === 'table'"
           :fields="getFields"
@@ -30,15 +30,15 @@
           :highlight="searchQuery"
         />
         <PrettyJson v-else :data="getPaginatedData" />
-      </Content>
-      <Footer>
+      </AppMain>
+      <AppFooter>
         <Pagination
           :total-items="getSearchedData.length"
           :per-page="perPage"
           :current-page="stagedCurrentPage"
           @change-page="onChangePage"
         />
-      </Footer>
+      </AppFooter>
     </template>
   </section>
 </template>
@@ -48,9 +48,9 @@ import { defineComponent, PropType } from "vue";
 import PrettyJson from "./PrettyJson.vue";
 import Pagination from "./Pagination.vue";
 import Table from "./Table.vue";
-import Header from "./layout/Header.vue";
-import Content from "./layout/Content.vue";
-import Footer from "./layout/Footer.vue";
+import AppHeader from "./AppHeader.vue";
+import AppMain from "./AppMain.vue";
+import AppFooter from "./AppFooter.vue";
 import RenderFormat from "./RenderFormat.vue";
 import Search from "./Search.vue";
 import { searchQueryOption } from "./Search";
@@ -88,9 +88,9 @@ export default defineComponent({
     PrettyJson,
     Pagination,
     Table,
-    Header,
-    Content,
-    Footer,
+    AppHeader,
+    AppMain,
+    AppFooter,
     RenderFormat,
     Search,
     ErrorMessage,
