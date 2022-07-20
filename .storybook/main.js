@@ -2,14 +2,14 @@ const path = require("path");
 
 module.exports = {
   stories: [
-    "../storybook/usage/Default.stories.js",
-    "../storybook/usage/WithRawToggle.stories.js",
-    "../storybook/usage/WithoutHeaders.stories.js",
-    "../storybook/usage/PickFields.stories.js",
-    "../storybook/data/ArrayOfObjects.stories.js",
-    "../storybook/data/ArrayOfDifferentObjects.stories.js",
-    "../storybook/data/ArrayOfArrayOfPrimitives.stories.js",
-    "../storybook/errors/FailsWhenProvidedInvalidData.stories.js",
+    "../storybook/Default.stories.js",
+    "../storybook/WithRawToggle.stories.js",
+    "../storybook/WithoutHeaders.stories.js",
+    "../storybook/PickFields.stories.js",
+    "../storybook/ArrayOfObjects.stories.js",
+    "../storybook/ArrayOfDifferentObjects.stories.js",
+    "../storybook/ArrayOfArrayOfPrimitives.stories.js",
+    "../storybook/FailsWhenProvidedInvalidData.stories.js",
     "../src/**/*.stories.@(js|jsx|ts|tsx)",
   ],
   addons: ["@storybook/addon-links", "@storybook/addon-essentials", "@storybook/addon-docs"],

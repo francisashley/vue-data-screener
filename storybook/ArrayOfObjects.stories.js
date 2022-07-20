@@ -1,5 +1,5 @@
-import DataScreener from "../../src/components/DataScreener.vue";
-import data from "../../fixtures/data.json";
+import DataScreener from "../src/components/DataScreener.vue";
+import data from "../fixtures/data.json";
 
 // More on default export: https://storybook.js.org/docs/vue/writing-stories/introduction#default-export
 export default {

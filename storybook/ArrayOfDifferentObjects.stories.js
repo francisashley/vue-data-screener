@@ -1,9 +1,8 @@
-import DataScreener from "../../src/components/DataScreener.vue";
-import data from "../../fixtures/data.json";
+import DataScreener from "../src/components/DataScreener.vue";
 
 // More on default export: https://storybook.js.org/docs/vue/writing-stories/introduction#default-export
 export default {
-  title: "Usage/PickFields",
+  title: "Data/ArrayOfDifferentObjects",
   component: DataScreener,
 };
 
@@ -14,8 +13,15 @@ const Template = (args, { argTypes }) => ({
   template: '<data-screener v-bind="$props" />',
 });
 
-export const PickFields = Template.bind({});
-PickFields.args = {
-  data: data,
-  pickFields: ["id", "first_name"],
+export const ArrayOfDifferentObjects = Template.bind({});
+ArrayOfDifferentObjects.args = {
+  data: [
+    { type: "fruit", name: "Orange" },
+    { id: 122, address: "42 Park Avenue" },
+    {
+      country: "UK",
+      name: "Great Britain",
+      flag_colours: "Red, white and blue",
+    },
+  ],
 };

@@ -1,8 +1,9 @@
-import DataScreener from "../../src/components/DataScreener.vue";
+import DataScreener from "../src/components/DataScreener.vue";
+import data from "../fixtures/data.json";
 
 // More on default export: https://storybook.js.org/docs/vue/writing-stories/introduction#default-export
 export default {
-  title: "errors/FailsWhenProvidedInvalidData",
+  title: "Usage/Default",
   component: DataScreener,
 };
 
@@ -13,5 +14,5 @@ const Template = (args, { argTypes }) => ({
   template: '<data-screener v-bind="$props" />',
 });
 
-export const FailsWhenProvidedInvalidData = Template.bind({});
-FailsWhenProvidedInvalidData.args = { data: ["a", "b", "c", "d"] };
+export const Default = Template.bind({});
+Default.args = { data: data };
