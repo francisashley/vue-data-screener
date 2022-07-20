@@ -26,6 +26,7 @@ export default defineConfig(({ mode }) => {
       },
     },
     build: {
+      sourcemap: true,
       lib: {
         entry: path.resolve(__dirname, "src/index.ts"),
         name: "VueDataScreener",
