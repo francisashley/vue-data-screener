@@ -1,5 +1,8 @@
 import { defineConfig } from "vite";
-import vue from "@vitejs/plugin-vue2";
+// note to self... the official vite vue2 plugin (@vitejs/plugin-vue2) does not
+// return correct line number on errors.. the community plugin (vite-plugin-vue2)
+// appears to do a better job without any known downsides.
+import { createVuePlugin as vue} from "vite-plugin-vue2";
 import { visualizer } from "rollup-plugin-visualizer";
 import typescript from "@rollup/plugin-typescript";
 import path from "path";
