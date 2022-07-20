@@ -12,6 +12,6 @@ export default Vue.extend({
 
 <template>
   <div id="app">
-    <data-screener :withRawToggle="true" />
+    <data-screener />
   </div>
 </template>

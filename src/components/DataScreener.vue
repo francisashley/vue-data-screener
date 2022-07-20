@@ -6,10 +6,9 @@
       array of objects or an array of arrays."
     />
     <template v-else>
-      <Header v-if="withHeader">
+      <Header>
         <div class="ds__title">Results</div>
         <RenderFormat
-          v-if="withRawToggle"
           class="ds__render-format"
           :active-format="renderFormat"
           @select-format="onSelectFormat"
@@ -82,14 +81,6 @@ export default defineComponent({
     currentPage: {
       type: Number as PropType<number>,
       default: 1,
-    },
-    withHeader: {
-      type: Boolean,
-      default: true,
-    },
-    withRawToggle: {
-      type: Boolean,
-      default: false,
     },
   },
 
