@@ -45,7 +45,7 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropType } from "vue";
+import { defineComponent, PropType } from "vue";
 import PrettyJson from "./components/PrettyJson.vue";
 import Pagination from "./components/Pagination.vue";
 import Table from "./components/Table.vue";
@@ -59,7 +59,7 @@ import ErrorMessage from "./components/ErrorMessage.vue";
 import isValidRegExp from "./utils/isValidRegExp";
 import dataTools, { normalisedRow, UnknownObject } from "./utils/dataTools";
 
-export default Vue.extend({
+export default defineComponent({
   name: "DataScreener",
 
   props: {

@@ -31,13 +31,13 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropType } from "vue";
+import { defineComponent, PropType } from "vue";
 import { orderBy } from "natural-orderby";
 import highlightText from "../utils/highlightText";
 import TableHeadField from "./TableHeadField.vue";
 import { normalisedRow } from "../utils/dataTools";
 
-export default Vue.extend({
+export default defineComponent({
   name: "DataScreenerTable",
 
   props: {

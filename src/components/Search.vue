@@ -28,7 +28,7 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropType } from "vue";
+import { defineComponent, PropType } from "vue";
 import { searchQueryOption } from "./Search";
 
 const OPTIONS = new Set(["match-case", "match-word", "use-regex"]);
@@ -40,7 +40,7 @@ type searchQueryInternalOption = {
   isActive?: boolean;
 };
 
-export default Vue.extend({
+export default defineComponent({
   name: "DataScreenerSearch",
   props: {
     query: {

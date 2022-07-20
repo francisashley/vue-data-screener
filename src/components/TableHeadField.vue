@@ -14,14 +14,14 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropType } from "vue";
+import { defineComponent, PropType } from "vue";
 import SortIcon from "./icons/Sort.vue";
 import SortUpIcon from "./icons/SortUp.vue";
 import SortDownIcon from "./icons/SortDown.vue";
 
 type sortDirection = null | "asc" | "desc";
 
-export default Vue.extend({
+export default defineComponent({
   name: "DataScreenerTable",
 
   props: {
