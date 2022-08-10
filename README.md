@@ -12,6 +12,7 @@
 - [x] can be imported as a component from github into vue project
 - [x] can highlight search query
 - [x] data is paginated
+- [ ] the theme looks like the Mozilla Firefox JSON viewer in dark mode
 - [ ] can display images / text / links
 - [ ] can add or remove table fields
 - [ ] can resize table fields
