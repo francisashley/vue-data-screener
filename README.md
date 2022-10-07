@@ -3,7 +3,7 @@
   <br/>
   <em>Easily search and filter javascript arrays</em>
   <br/>
-  <a href="https://skystash.github.io/vue-data-screener/">Documentation</a>
+  <a href="https://francisashley.github.io/vue-data-screener/">Documentation</a>
 </div>
 
 ## Features
