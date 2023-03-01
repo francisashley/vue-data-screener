@@ -55,8 +55,17 @@ import RenderFormat from "./RenderFormat.vue";
 import Search from "./Search.vue";
 import { searchQueryOption } from "./Search";
 import ErrorMessage from "./ErrorMessage.vue";
-import isValidRegExp from "../utils/isValidRegExp";
-import dataTools, { normalisedRow, UnknownObject } from "../utils/dataTools";
+import { isValidRegExp } from "../utils/regex.utils";
+import {
+  normalisedRow,
+  UnknownObject,
+  isValidInput,
+  normaliseInput,
+  pickFields,
+  getFields,
+  search,
+  getPaginated,
+} from "../utils/data.utils";
 
 export default defineComponent({
   name: "DataScreener",
@@ -65,7 +74,7 @@ export default defineComponent({
     data: {
       type: Array as PropType<unknown[]>,
       default: () => [],
-      validator: dataTools.isValidInput,
+      validator: isValidInput,
     },
     pickFields: {
       type: Array as PropType<string[]>,
@@ -108,7 +117,7 @@ export default defineComponent({
 
   computed: {
     isValidInput(): boolean {
-      return dataTools.isValidInput(this.data);
+      return isValidInput(this.data);
     },
 
     isRegExFriendlySearchQuery(): boolean {
@@ -116,19 +125,17 @@ export default defineComponent({
     },
 
     getNormalisedData(): normalisedRow[] {
-      const data = dataTools.isValidInput(this.data)
-        ? dataTools.normaliseInput(this.data as UnknownObject[])
-        : [];
+      const data = isValidInput(this.data) ? normaliseInput(this.data as UnknownObject[]) : [];
 
       if (this.pickFields.length > 0) {
-        return dataTools.pickFields(data, this.pickFields);
+        return pickFields(data, this.pickFields);
       }
 
       return data;
     },
 
     getFields(): string[] {
-      return dataTools.getFields(this.getNormalisedData);
+      return getFields(this.getNormalisedData);
     },
 
     shouldUseRegEx(): boolean {
@@ -144,7 +151,7 @@ export default defineComponent({
     },
 
     getSearchedData(): normalisedRow[] {
-      return dataTools.search({
+      return search({
         rows: this.getNormalisedData,
         searchQuery: this.searchQuery,
         useRegExp: this.shouldUseRegEx,
@@ -154,7 +161,7 @@ export default defineComponent({
     },
 
     getPaginatedData(): unknown[] {
-      return dataTools.getPaginated({
+      return getPaginated({
         rows: this.searchQuery ? this.getSearchedData : this.getNormalisedData,
         page: this.stagedCurrentPage - 1,
         perPage: this.perPage,
@@ -173,21 +180,21 @@ export default defineComponent({
       this.onSearch(this.searchQuery);
     },
 
-    onSelectFormat(format: 'table' | 'json') {
+    onSelectFormat(format: "table" | "json") {
       this.renderFormat = format;
     },
 
     onChangePage(page: number) {
       this.stagedCurrentPage = page;
-    }
+    },
   },
 });
 </script>
 
 <style>
 .ds {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
-    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 14px;
 }
 

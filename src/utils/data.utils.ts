@@ -1,13 +1,10 @@
-import escapeRegExp from "./escapeRegExp";
+import { escapeRegExp } from "./regex.utils";
 import getTypeOf from "./getTypeOf";
-import isValidRegExp from "./isValidRegExp";
+import { isValidRegExp } from "../utils/regex.utils";
 
 export function isValidInput(data: unknown): boolean {
   const isObject = (val: unknown) => typeof val === "object" && val !== null;
-  return (
-    Array.isArray(data) &&
-    data.every((row: unknown) => Array.isArray(row) || isObject(row))
-  );
+  return Array.isArray(data) && data.every((row: unknown) => Array.isArray(row) || isObject(row));
 }
 
 export interface normalisedField {
@@ -46,9 +43,7 @@ export function normaliseInput(data: UnknownObject[]): normalisedRow[] {
 
   let normalisedData = data.map(
     (row: UnknownObject): normalisedRow => {
-      return Object.keys(row).map(
-        (key): normalisedField => normaliseField(key, row[key])
-      );
+      return Object.keys(row).map((key): normalisedField => normaliseField(key, row[key]));
     }
   );
 
@@ -80,10 +75,7 @@ export function getFields(rows: normalisedRow[]): string[] {
 
 type ExcludesFalse = <T>(x: T | false) => x is T;
 
-export function pickFields(
-  rows: normalisedRow[],
-  pickFields: string[]
-): normalisedRow[] {
+export function pickFields(rows: normalisedRow[], pickFields: string[]): normalisedRow[] {
   return rows.map((row) => {
     return pickFields
       .map((pickField) => row.find((field) => field.key === pickField) || false)
@@ -146,12 +138,7 @@ export function search(options: {
 }): normalisedRow[] {
   let { searchQuery = "" } = options;
 
-  const {
-    rows,
-    useRegExp = false,
-    matchCase = false,
-    matchWord = false,
-  } = options;
+  const { rows, useRegExp = false, matchCase = false, matchWord = false } = options;
 
   // escape regex
   if (!useRegExp || !isValidRegExp(searchQuery)) {
@@ -174,12 +161,3 @@ export function search(options: {
     });
   });
 }
-
-export default {
-  isValidInput,
-  normaliseInput,
-  getFields,
-  pickFields,
-  getPaginated,
-  search,
-};

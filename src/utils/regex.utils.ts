@@ -21,10 +21,17 @@ const reHasRegExpChar = RegExp(reRegExpChar.source);
  * escapeRegExp('[lodash](https://lodash.com/)')
  * // => '\[lodash\]\(https://lodash\.com/\)'
  */
-function escapeRegExp(string: string): string {
+export function escapeRegExp(string: string): string {
   return string && reHasRegExpChar.test(string)
     ? string.replace(reRegExpChar, "\\$&")
     : string || "";
 }
 
-export default escapeRegExp;
+export function isValidRegExp(pattern: string): boolean {
+  try {
+    new RegExp(pattern);
+    return true;
+  } catch (e) {
+    return false;
+  }
+}

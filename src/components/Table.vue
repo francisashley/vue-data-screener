@@ -19,9 +19,7 @@
           <td
             v-for="(field, k) in row"
             :key="k"
-            v-html="
-              field.hasValue ? getHighlighted(field.value, highlight) : ''
-            "
+            v-html="field.hasValue ? getHighlighted(field.value, highlight) : ''"
           />
         </template>
         <template v-else><td colspan="100%" /></template>
@@ -35,7 +33,7 @@ import { defineComponent, PropType } from "vue";
 import { orderBy } from "natural-orderby";
 import highlightText from "../utils/highlightText";
 import TableHeadField from "./TableHeadField.vue";
-import { normalisedRow } from "../utils/dataTools";
+import { normalisedRow } from "../utils/data.utils";
 
 export default defineComponent({
   name: "DataScreenerTable",
@@ -70,8 +68,7 @@ export default defineComponent({
     getSortedRows(): normalisedRow[] {
       const rows = this.rows;
 
-      const sortIndex =
-        rows[0]?.findIndex((column) => column.key === this.sortField) ?? null;
+      const sortIndex = rows[0]?.findIndex((column) => column.key === this.sortField) ?? null;
 
       if (this.sortField && this.sortDirection) {
         return orderBy(
