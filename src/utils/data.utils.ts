@@ -106,27 +106,28 @@ export function getPaginated(options: {
   return rows;
 }
 
-const matchesSearch = (options: {
-  value: string;
-  searchQuery: string;
-  matchCase: boolean;
-  matchWord: boolean;
-  useRegExp: boolean;
-}): boolean => {
-  let { value = "", searchQuery = "" } = options;
+const meetsCriteria = (
+  inputText: string,
+  pattern: string,
+  options: {
+    matchCase: boolean;
+    matchWord: boolean;
+    useRegExp: boolean;
+  }
+): boolean => {
   const { matchCase = false, matchWord = false, useRegExp = false } = options;
 
-  const flags = [!matchCase && "i", "g"].filter(Boolean).join("");
+  const flags = matchCase ? "g" : "gi";
 
   if (matchWord) {
-    searchQuery = `\\b(${searchQuery})\\b`;
+    pattern = `\\b(${pattern})\\b`;
   }
 
   if (!useRegExp) {
-    value = escapeRegExp(value);
+    inputText = escapeRegExp(inputText);
   }
 
-  return new RegExp(searchQuery, flags).test(value);
+  return new RegExp(pattern, flags).test(inputText);
 };
 
 export function search(options: {
@@ -147,11 +148,9 @@ export function search(options: {
 
   return rows.filter((row): boolean => {
     return row.some((field): boolean => {
-      const value = field.value;
+      const value = String(field.value ?? "");
       if (getTypeOf(value)) {
-        return matchesSearch({
-          value: String(value ?? ""),
-          searchQuery,
+        return meetsCriteria(String(field.value ?? ""), searchQuery, {
           matchCase,
           matchWord,
           useRegExp,
