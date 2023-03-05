@@ -71,11 +71,22 @@ export default defineComponent({
       const sortIndex = rows[0]?.findIndex((column) => column.key === this.sortField) ?? null;
 
       if (this.sortField && this.sortDirection) {
-        return orderBy(
-          rows,
-          [(row: normalisedRow | null) => row?.[sortIndex]?.value],
-          [this.sortDirection]
+        const nullRows = rows.filter(
+          (row) => row?.[sortIndex] === null || row?.[sortIndex] === undefined
         );
+
+        const nonNullRows = rows.filter(
+          (row) => row?.[sortIndex] !== null && row?.[sortIndex] !== undefined
+        );
+
+        return [
+          ...orderBy(
+            nonNullRows,
+            [(row: normalisedRow | null) => row?.[sortIndex]?.value],
+            [this.sortDirection]
+          ),
+          ...nullRows,
+        ];
       } else {
         return rows;
       }
