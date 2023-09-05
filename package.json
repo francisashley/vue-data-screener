@@ -31,7 +31,7 @@
     "@storybook/vue-vite": "7.4.0",
     "@typescript-eslint/eslint-plugin": "6.6.0",
     "@typescript-eslint/parser": "^6.6.0",
-    "@vitejs/plugin-vue": "^3.0.1",
+    "@vitejs/plugin-vue": "^4.3.4",
     "@vue/cli-plugin-babel": "^4.5.13",
     "@vue/eslint-config-prettier": "6.0.0",
     "@vue/eslint-config-typescript": "^10.0.0",
