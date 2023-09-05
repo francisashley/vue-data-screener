@@ -1,4 +1,3 @@
-const path = require("path");
 
 module.exports = {
   stories: [
@@ -12,8 +11,14 @@ module.exports = {
     "../storybook/FailsWhenProvidedInvalidData.stories.js",
     "../src/**/*.stories.@(js|jsx|ts|tsx)",
   ],
+
   addons: ["@storybook/addon-links", "@storybook/addon-essentials", "@storybook/addon-docs"],
-  framework: "@storybook/vue",
+
+  framework: {
+    name: "@storybook/vue-vite",
+    options: {}
+  },
+
   webpackFinal: async (config) => {
     config.module.rules.push({
       test: /\.scss$/,
@@ -26,4 +31,8 @@ module.exports = {
 
     return config;
   },
+
+  docs: {
+    autodocs: true
+  }
 };
