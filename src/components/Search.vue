@@ -52,7 +52,7 @@ export default defineComponent({
       default: true,
     },
     activeOptions: {
-      type: Array as PropType<Array<searchQueryOption>>,
+      type: Array as PropType<searchQueryOption[]>,
       default: () => [],
       validator: (options: string[]) => options.every((option) => OPTIONS.has(option)),
     },
@@ -83,7 +83,7 @@ export default defineComponent({
   },
   methods: {
     debouncedSearch(event: Event): void {
-      const searchQuery = (<HTMLInputElement>event.target).value;
+      const searchQuery = (event.target as HTMLInputElement).value;
       this.search(searchQuery);
       if (searchQuery) {
         this.history.push(searchQuery);
