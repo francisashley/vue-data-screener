@@ -52,11 +52,11 @@
     "storybook": "7.4.0",
     "typescript": "5.2.2",
     "vite": "^4.4.9",
-    "vite-plugin-vue2": "^2.0.2",
-    "vitest": "^0.18.1",
-    "vue": "2.7.7",
-    "vue-loader": "^15.9.8",
-    "vue-template-compiler": "2.7.7",
+    "vite-plugin-vue2": "^2.0.3",
+    "vitest": "^0.34.3",
+    "vue": "2.7.14",
+    "vue-loader": "^17.2.2",
+    "vue-template-compiler": "2.7.14",
     "vue-tsc": "^0.38.8"
   },
   "peerDependencies": {
