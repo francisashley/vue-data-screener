@@ -1,3 +1,9 @@
+# 📦 **[vue-data-screener](https://github.com/francisashley/vue-data-screener)** has been archived.
+
+This project, originally built on Vue 2, has been succeeded by **[vue-screener](https://github.com/francisashley/vue-screener)**, which is built on Vue 3.
+
+----
+
 <div align="center">
   <img src=".storybook/logo-light.png" alt="Logo" style="max-width: 400px;">
   <br/>
