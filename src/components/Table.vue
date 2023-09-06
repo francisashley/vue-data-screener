@@ -19,7 +19,9 @@
           <td
             v-for="(field, k) in row"
             :key="k"
-            v-html="field.hasValue ? getHighlighted(field.value, highlight) : ''"
+            v-html="
+              field.hasValue ? getHighlighted(field.value, highlight) : ''
+            "
           />
         </template>
         <template v-else><td colspan="100%" /></template>
@@ -68,22 +70,23 @@ export default defineComponent({
     getSortedRows(): normalisedRow[] {
       const rows = this.rows;
 
-      const sortIndex = rows[0]?.findIndex((column) => column.key === this.sortField) ?? null;
+      const sortIndex =
+        rows[0]?.findIndex((column) => column.key === this.sortField) ?? null;
 
       if (this.sortField && this.sortDirection) {
         const nullRows = rows.filter(
-          (row) => row?.[sortIndex] === null || row?.[sortIndex] === undefined
+          (row) => row?.[sortIndex] === null || row?.[sortIndex] === undefined,
         );
 
         const nonNullRows = rows.filter(
-          (row) => row?.[sortIndex] !== null && row?.[sortIndex] !== undefined
+          (row) => row?.[sortIndex] !== null && row?.[sortIndex] !== undefined,
         );
 
         return [
           ...orderBy(
             nonNullRows,
             [(row: normalisedRow | null) => row?.[sortIndex]?.value],
-            [this.sortDirection]
+            [this.sortDirection],
           ),
           ...nullRows,
         ];

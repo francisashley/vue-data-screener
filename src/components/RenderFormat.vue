@@ -12,7 +12,10 @@
     <a
       href="#"
       @click.prevent="onSelectFormat('raw')"
-      :class="['ds-render-format__link', props.activeFormat === 'raw' && 'is-active']"
+      :class="[
+        'ds-render-format__link',
+        props.activeFormat === 'raw' && 'is-active',
+      ]"
       v-text="'Raw'"
     />
   </div>
@@ -27,26 +30,26 @@ export default defineComponent({
   name: "DataScreenerRenderFormat",
 
   props: {
-      activeFormat: {
-        type: String,
-        default: "table",
-        validator: (activeFormat: string) => FORMATS.has(activeFormat),
-      }
+    activeFormat: {
+      type: String,
+      default: "table",
+      validator: (activeFormat: string) => FORMATS.has(activeFormat),
+    },
   },
 
   emits: {
-    "select-format": (format: 'raw' | 'table') => format
+    "select-format": (format: "raw" | "table") => format,
   },
 
   setup(props, { emit }) {
-    const onSelectFormat = (format: 'raw' | 'table') => emit('select-format', format)
+    const onSelectFormat = (format: "raw" | "table") =>
+      emit("select-format", format);
 
     return {
       onSelectFormat,
       props,
-    }
+    };
   },
-
 });
 </script>
 

@@ -54,7 +54,8 @@ export default defineComponent({
     activeOptions: {
       type: Array as PropType<searchQueryOption[]>,
       default: () => [],
-      validator: (options: string[]) => options.every((option) => OPTIONS.has(option)),
+      validator: (options: string[]) =>
+        options.every((option) => OPTIONS.has(option)),
     },
   },
   data() {
@@ -71,7 +72,7 @@ export default defineComponent({
   computed: {
     useRegEx(): boolean {
       return this.activeOptions.some(
-        (activeOption) => activeOption === "use-regex"
+        (activeOption) => activeOption === "use-regex",
       );
     },
     getOptions(): searchQueryInternalOption[] {
@@ -122,7 +123,7 @@ export default defineComponent({
       let activeOptions = this.activeOptions;
       if (activeOptions.includes(option)) {
         activeOptions = activeOptions.filter(
-          (activeOption) => activeOption !== option
+          (activeOption) => activeOption !== option,
         );
       } else {
         activeOptions = [...activeOptions, option];

@@ -109,7 +109,7 @@ export default defineComponent({
     return {
       searchQuery: "" as string,
       stagedCurrentPage: this.currentPage as number,
-      renderFormat: "table" as "table" | "json",
+      renderFormat: "table" as "table" | "raw",
       searchQueryOptions: [] as searchQueryOption[],
       searchedData: [],
     };
@@ -125,7 +125,9 @@ export default defineComponent({
     },
 
     getNormalisedData(): normalisedRow[] {
-      const data = isValidInput(this.data) ? normaliseInput(this.data as UnknownObject[]) : [];
+      const data = isValidInput(this.data)
+        ? normaliseInput(this.data as UnknownObject[])
+        : [];
 
       if (this.pickFields.length > 0) {
         return pickFields(data, this.pickFields);
@@ -160,7 +162,7 @@ export default defineComponent({
       });
     },
 
-    getPaginatedData(): unknown[] {
+    getPaginatedData(): normalisedRow[] {
       return getPaginated({
         rows: this.searchQuery ? this.getSearchedData : this.getNormalisedData,
         page: this.stagedCurrentPage - 1,
@@ -180,7 +182,7 @@ export default defineComponent({
       this.onSearch(this.searchQuery);
     },
 
-    onSelectFormat(format: "table" | "json") {
+    onSelectFormat(format: "table" | "raw") {
       this.renderFormat = format;
     },
 
@@ -193,8 +195,8 @@ export default defineComponent({
 
 <style>
 .ds {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 14px;
 }
 

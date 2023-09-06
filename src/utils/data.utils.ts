@@ -4,7 +4,10 @@ import { isValidRegExp } from "../utils/regex.utils";
 
 export function isValidInput(data: unknown): boolean {
   const isObject = (val: unknown) => typeof val === "object" && val !== null;
-  return Array.isArray(data) && data.every((row: unknown) => Array.isArray(row) || isObject(row));
+  return (
+    Array.isArray(data) &&
+    data.every((row: unknown) => Array.isArray(row) || isObject(row))
+  );
 }
 
 export interface normalisedField {
@@ -41,11 +44,11 @@ export function normaliseInput(data: UnknownObject[]): normalisedRow[] {
     hasValue: value !== null || value !== undefined,
   });
 
-  let normalisedData = data.map(
-    (row: UnknownObject): normalisedRow => {
-      return Object.keys(row).map((key): normalisedField => normaliseField(key, row[key]));
-    }
-  );
+  let normalisedData = data.map((row: UnknownObject): normalisedRow => {
+    return Object.keys(row).map(
+      (key): normalisedField => normaliseField(key, row[key]),
+    );
+  });
 
   // In the case that an array of objects has been passed in with different fields, ensure that all rows include all fields and in the same order.
   const fields = getFields(normalisedData);
@@ -75,11 +78,14 @@ export function getFields(rows: normalisedRow[]): string[] {
 
 type ExcludesFalse = <T>(x: T | false) => x is T;
 
-export function pickFields(rows: normalisedRow[], pickFields: string[]): normalisedRow[] {
+export function pickFields(
+  rows: normalisedRow[],
+  pickFields: string[],
+): normalisedRow[] {
   return rows.map((row) => {
     return pickFields
       .map((pickField) => row.find((field) => field.key === pickField) || false)
-      .filter((Boolean as unknown) as ExcludesFalse);
+      .filter(Boolean as unknown as ExcludesFalse);
   });
 }
 
@@ -88,7 +94,7 @@ export function getPaginated(options: {
   page: number;
   perPage: number;
   withPlaceholders: boolean;
-}): (normalisedRow | null)[] {
+}): normalisedRow[] {
   let { rows = [] } = options;
   const { page = 1, perPage = 25, withPlaceholders = false } = options;
 
@@ -113,7 +119,7 @@ const meetsCriteria = (
     matchCase: boolean;
     matchWord: boolean;
     useRegExp: boolean;
-  }
+  },
 ): boolean => {
   const { matchCase = false, matchWord = false, useRegExp = false } = options;
 
@@ -139,7 +145,12 @@ export function search(options: {
 }): normalisedRow[] {
   let { searchQuery = "" } = options;
 
-  const { rows, useRegExp = false, matchCase = false, matchWord = false } = options;
+  const {
+    rows,
+    useRegExp = false,
+    matchCase = false,
+    matchWord = false,
+  } = options;
 
   // escape regex
   if (!useRegExp || !isValidRegExp(searchQuery)) {
