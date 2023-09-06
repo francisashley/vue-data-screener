@@ -1,14 +1,13 @@
-
-module.exports = {
+export default {
   stories: [
-    "../storybook/Default.stories.js",
-    "../storybook/WithRawToggle.stories.js",
-    "../storybook/WithoutHeaders.stories.js",
-    "../storybook/PickFields.stories.js",
-    "../storybook/ArrayOfObjects.stories.js",
-    "../storybook/ArrayOfDifferentObjects.stories.js",
-    "../storybook/ArrayOfArrayOfPrimitives.stories.js",
-    "../storybook/FailsWhenProvidedInvalidData.stories.js",
+    "../storybook/Default.stories.ts",
+    "../storybook/WithRawToggle.stories.ts",
+    "../storybook/WithoutHeaders.stories.ts",
+    "../storybook/PickFields.stories.ts",
+    "../storybook/ArrayOfObjects.stories.ts",
+    "../storybook/ArrayOfDifferentObjects.stories.ts",
+    "../storybook/ArrayOfArrayOfPrimitives.stories.ts",
+    "../storybook/FailsWhenProvidedInvalidData.stories.ts",
     "../src/**/*.stories.@(js|jsx|ts|tsx)",
   ],
 

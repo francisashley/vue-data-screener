@@ -27,6 +27,7 @@
     "@storybook/addon-docs": "7.4.0",
     "@storybook/addon-essentials": "7.4.0",
     "@storybook/addon-links": "7.4.0",
+    "@storybook/addons": "^7.4.0",
     "@storybook/vue": "7.4.0",
     "@storybook/vue-vite": "7.4.0",
     "@typescript-eslint/eslint-plugin": "6.6.0",

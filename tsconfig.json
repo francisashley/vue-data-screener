@@ -12,9 +12,11 @@
     "experimentalDecorators": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
     "sourceMap": true,
     "baseUrl": ".",
     "newLine": "lf",
+    "types": [],
     "typeRoots": ["@types", "./types"],
     "paths": {
       "@/*": ["src/*"]
